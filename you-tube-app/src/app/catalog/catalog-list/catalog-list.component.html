@@ -1,0 +1,27 @@
+<div class="flex-container catalog-container">
+
+  <div class="grow2">
+    <button mat-button (click)="searchVideo()">Search</button>
+    <mat-list dense>
+        <mat-list-item *ngFor="let video of videoList">
+          <div class="delete-video" (click)="deleteVideo(video)">
+            <i class="material-icons icon-video">
+                delete_sweep
+            </i>
+          </div>
+          <div class="video-list" (click)="getId(video.id)" >
+              <i class="material-icons icon-video">
+                  launch
+              </i> <span>{{video.title}}</span>
+          </div>
+        </mat-list-item>
+    </mat-list>
+  </div>
+  <div class="grow8">
+    <div *ngIf="showSearch">
+      <app-video-list [user]="userName" (videoSubmitted)="catalogUpdated($event)"></app-video-list>
+    </div>
+    <app-video-reader [videoItem]="videoSelected"></app-video-reader>
+  </div>
+</div>
+

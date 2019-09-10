@@ -1,0 +1,24 @@
+<div class="header">
+  <div class="header-flex">
+    <div class=header-flex__grow1>
+      <a routerLink="/" routerLinkActive="active"><img width="150" alt="thales Logo" src="../assets/easy-vista.png"></a>
+    </div>
+    <div class=header-flex__grow8>
+      <h1>Welcome to {{ title }}!</h1>
+    </div>
+    <div class=header-flex__grow1>
+      <ul style="list-style: none">
+        <li>
+          <mat-form-field style="padding-right: 20px">
+            <mat-label>Select an user</mat-label>
+            <mat-select [(value)]="selected">
+              <mat-option value="john">John</mat-option>
+              <mat-option value="mark">Mark</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <a routerLink="/catalog" [state]="{ data: selected }" routerLinkActive="active" >Display Catalog</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,40 @@
+<!-- Page Content -->
+<div class="container">
+  <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+    <label>
+      Video name:
+      <input type="text" formControlName="videoName" required>
+    </label>
+    <label>
+      Number of result:
+      <input type="number" max="5" formControlName="numberOfVideo">
+    </label>
+    <button type="submit" [disabled]="!searchForm.valid">Submit</button>
+  </form>
+</div>
+
+<div class="container" *ngIf="showResult" >
+  <header class="bg-success text-center p-2  py-3 mb-4">
+    <div class="container">
+      <h1 class="font-weight-light text-white">YOUTUBE SEARCH RESULT</h1>
+    </div>
+  </header>
+
+  <ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="ball-scale-multiple">
+    <p style="font-size: 20px; color: white">Loading...</p>
+  </ngx-spinner>
+  <mat-nav-list>
+    <mat-list-item *ngFor="let video of videos">
+      <button mat-icon-button (click)="addVideoInCatalog(video)"><mat-icon class="mat-18">add</mat-icon></button>
+
+        <img [src]="video.snippet.thumbnails.default.url" alt="...">
+
+      <h5>
+        <a matLine href="https://www.youtube.com/watch?v={{video.id.videoId}}">{{video.snippet.title}}</a>
+      </h5>
+    </mat-list-item>
+  </mat-nav-list>
+
+
+</div>
+<!-- /.container -->
